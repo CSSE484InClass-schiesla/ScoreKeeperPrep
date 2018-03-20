@@ -8,22 +8,27 @@
 
 #import "ViewController.h"
 
-@interface ViewController ()
-
-@end
-
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    self.textView.text = @"";
 }
 
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (IBAction)pressedButton:(id)sender {
+    NSString* textInTextField = self.textField.text;
+    int textAsInt = [textInTextField intValue];
+    if (self.textView.text.length > 0) {
+        //self.textView.text = [NSString stringWithFormat:@"%@\n%@", self.textView.text, textInTextField];
+        self.textView.text = [NSString stringWithFormat:@"%@\n%d", self.textView.text, textAsInt];
+    } else {
+        //self.textView.text = textInTextField;
+        self.textView.text = [NSString stringWithFormat:@"%d", textAsInt];
+    }
+    
+    
+    self.textField.text = @"";
+    [self.view endEditing:YES];
 }
-
 
 @end
